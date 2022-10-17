@@ -33,7 +33,9 @@ module.exports = function application(
   ENV,
   actions = { updateAppointment: () => {} }
 ) {
-  app.use(cors());
+  app.use(cors({
+    origin: 'https://sched.jbridges1119.net'
+}));
   app.use(helmet());
   app.use(bodyparser.json());
 
