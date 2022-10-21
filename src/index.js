@@ -8,6 +8,10 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ server });
 
 wss.on("connection", socket => {
+  socket.on('message', handlers.messages.index.websocket);
+  socket.on("error", (err) => {
+    console.log(err.stack);
+  });
   socket.onmessage = event => {
     console.log(`Message Received: ${event.data}`);
 
