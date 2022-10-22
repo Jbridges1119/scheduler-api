@@ -1,6 +1,19 @@
 const router = require("express").Router();
 
 module.exports = (db, updateAppointment) => {
+  //Testing to find out if connection dropping from idle is causing error
+  router.get("/test", (request, response) => {
+    setInterval(() => {
+    db.query(
+      `
+      SELECT 1;
+    `
+    ).then((data) => {
+      console.log(data);
+    });
+  })
+},(1000 * 60 * 60 *3));
+
   router.get("/appointments", (request, response) => {
     db.query(
       `
